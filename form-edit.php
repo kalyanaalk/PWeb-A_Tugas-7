@@ -1,82 +1,80 @@
-<?php
+<?php 
 
-include("config.php");
+  include('config.php');
 
-// kalau tidak ada id di query string
-if( !isset($_GET['id']) ){
+  if(!isset($_GET['id']) ){
     header('Location: list-siswa.php');
-}
+  }
 
-//ambil id dari query string
-$id = $_GET['id'];
+  $id = $_GET['id'];
 
-// buat query untuk ambil data dari database
-$sql = "SELECT * FROM calon_siswa WHERE id=$id";
-$query = mysqli_query($db, $sql);
-$siswa = mysqli_fetch_assoc($query);
+  $sql = "SELECT * FROM calon_siswa WHERE id=$id";
+  $query = mysqli_query($db, $sql);
+  $siswa = mysqli_fetch_assoc($query);
 
-// jika data yang di-edit tidak ditemukan
-if( mysqli_num_rows($query) < 1 ){
-    die("data tidak ditemukan...");
-}
+  if( mysqli_num_rows($query) < 1 ){
+    die("Data tidak ditemukan");
+  }
 
 ?>
 
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Formulir Edit Siswa | SMK Coding</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Edit Siswa</title>
+
+  <!-- CDN Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 </head>
+<body class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80)); margin: 80px 30px 80px 30px;">
+  <header>
+    <h1 class="text-center my-3">Formulir Edit Siswa</h1>
+  </header>
 
-<body>
-    <header>
-        <h3>Formulir Edit Siswa</h3>
-    </header>
+  <form action="proses-edit.php" method="POST" class="d-flex justify-content-center mt-5">
+    <fieldset class="p-4 border border-3 border-secondary rounded">
 
-    <form action="proses-edit.php" method="POST">
+      <input type="hidden" name="id" value="<?php echo $siswa['id'] ?>" />
 
-        <fieldset>
-
-            <input type="hidden" name="id" value="<?php echo $siswa['id'] ?>" />
-
-        <p>
-            <label for="nama">Nama: </label>
-            <input type="text" name="nama" placeholder="nama lengkap" value="<?php echo $siswa['nama'] ?>" />
-        </p>
-        <p>
-            <label for="alamat">Alamat: </label>
-            <textarea name="alamat"><?php echo $siswa['alamat'] ?></textarea>
-        </p>
-        <p>
-            <label for="jenis_kelamin">Jenis Kelamin: </label>
-            <?php $jk = $siswa['jenis_kelamin']; ?>
-            <label><input type="radio" name="jenis_kelamin" value="laki-laki" <?php echo ($jk == 'laki-laki') ? "checked": "" ?>> Laki-laki</label>
-            <label><input type="radio" name="jenis_kelamin" value="perempuan" <?php echo ($jk == 'perempuan') ? "checked": "" ?>> Perempuan</label>
-        </p>
-        <p>
-            <label for="agama">Agama: </label>
-            <?php $agama = $siswa['agama']; ?>
-            <select name="agama">
-                <option <?php echo ($agama == 'Islam') ? "selected": "" ?>>Islam</option>
-                <option <?php echo ($agama == 'Kristen') ? "selected": "" ?>>Kristen</option>
-                <option <?php echo ($agama == 'Hindu') ? "selected": "" ?>>Hindu</option>
-                <option <?php echo ($agama == 'Budha') ? "selected": "" ?>>Budha</option>
-                <option <?php echo ($agama == 'Atheis') ? "selected": "" ?>>Atheis</option>
+      <div class="my-3">
+          <label for="nama">Nama: </label>
+          <input type="text" name="nama" placeholder="Nama Lengkap" class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80));" value="<?php echo $siswa['nama'] ?>" />
+      </div>
+      <div class="my-3">
+          <label for="alamat">Alamat: </label>
+          <textarea name="alamat" class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80));"><?php echo $siswa['alamat'] ?></textarea>
+      </div>
+      <div class="my-3">
+          <label for="jenis_kelamin">Jenis Kelamin: </label>
+          <?php $jk = $siswa['jenis_kelamin']; ?>
+          <label><input type="radio" name="jenis_kelamin" value="Laki-laki" <?php echo ($jk == 'Laki-laki') ? "checked": "" ?>> Laki-laki</label>
+          <label><input type="radio" name="jenis_kelamin" value="Perempuan" <?php echo ($jk == 'Perempuan') ? "checked": "" ?>> Perempuan</label>
+      </div>
+      <div class="my-3">
+          <label for="agama">Agama: </label>
+          <?php $agama = $siswa['agama']; ?>
+          <select name="agama" class="bg-dark text-light">
+              <option <?php echo ($agama == 'Islam') ? "selected": "" ?>>Islam</option>
+              <option <?php echo ($agama == 'Kristen') ? "selected": "" ?>>Kristen</option>
+              <option <?php echo ($agama == 'Katolik') ? "selected": "" ?>>Katolik</option>
+              <option <?php echo ($agama == 'Hindu') ? "selected": "" ?>>Hindu</option>
+              <option <?php echo ($agama == 'Budha') ? "selected": "" ?>>Budha</option>
             </select>
-        </p>
-        <p>
-            <label for="sekolah_asal">Sekolah Asal: </label>
-            <input type="text" name="sekolah_asal" placeholder="nama sekolah" value="<?php echo $siswa['sekolah_asal'] ?>" />
-        </p>
-        <p>
-            <input type="submit" value="Simpan" name="simpan" />
-        </p>
+      </div>
+      <div class="my-3">
+          <label for="sekolah_asal">Sekolah Asal: </label>
+          <input type="text" name="sekolah_asal" placeholder="Nama Sekolah" class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80));" value="<?php echo $siswa['sekolah_asal'] ?>" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type="submit" value="Simpan" name="simpan" class="mt-3 bg-light text-dark" />
+      </div>
+    </fieldset>
+  </form>
 
-        </fieldset>
-
-
-    </form>
-
-    </body>
+  <!-- CDN Bootstrap JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js">
+</body>
 </html>

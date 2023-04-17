@@ -1,52 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Formulir Pendaftaran Siswa Baru | SMK Coding</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Pendaftaran Siswa Baru</title>
+
+  <!-- CDN Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 </head>
+<body class="bg-dark text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80)); margin: 80px 30px 80px 30px;">
+  <header>
+    <h1 class="text-center my-3">Formulir Pendaftaran Siswa Baru</h1>
+  </header>
 
-<body>
-    <header>
-        <h3>Formulir Pendaftaran Siswa Baru</h3>
-    </header>
+  <form action="proses-pendaftaran.php" method="POST" class="d-flex justify-content-center mt-5">
+    <fieldset class="p-4 border border-3 border-secondary rounded">
 
-    <form action="proses-pendaftaran.php" method="POST">
+      <div class="my-3">
+        <label for="nama">Nama: </label>
+        <input type="text" name="nama" placeholder="Nama Lengkap" class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80));"/>
+      </div>
+      <div class="my-3">
+        <label for="alamat">Alamat: </label>
+        <textarea name="alamat" class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80));"></textarea>
+      </div>
+      <div class="my-3">
+        <label for="jenis_kelamin">Jenis Kelamin: </label>
+        <label><input type="radio" name="jenis_kelamin" value="Laki-laki">Laki-laki</label>
+        <label><input type="radio" name="jenis_kelamin" value="Perempuan">Perempuan</label>
+      </div>
+      <div class="my-3">
+        <label for="agama">Agama: </label>
+        <select name="agama" class="bg-dark text-light">
+            <option>Islam</option>
+            <option>Kristen</option>
+            <option>Katolik</option>
+            <option>Hindu</option>
+            <option>Budha</option>
+        </select>
+      </div>
+      <div class="my-3">
+        <label for="sekolah_asal">Sekolah Asal: </label>
+        <input type="text" name="sekolah_asal" placeholder="Nama Sekolah" class="text-light" style="background-image: linear-gradient(to bottom, rgb(0, 50, 80), rgb(0, 50, 80));"/>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type="submit" value="Daftar" name="daftar" class="mt-3 bg-light text-dark">
+      </div>
 
-        <fieldset>
+    </fieldset>
+  </form>
 
-        <p>
-            <label for="nama">Nama: </label>
-            <input type="text" name="nama" placeholder="nama lengkap" />
-        </p>
-        <p>
-            <label for="alamat">Alamat: </label>
-            <textarea name="alamat"></textarea>
-        </p>
-        <p>
-            <label for="jenis_kelamin">Jenis Kelamin: </label>
-            <label><input type="radio" name="jenis_kelamin" value="laki-laki"> Laki-laki</label>
-            <label><input type="radio" name="jenis_kelamin" value="perempuan"> Perempuan</label>
-        </p>
-        <p>
-            <label for="agama">Agama: </label>
-            <select name="agama">
-                <option>Islam</option>
-                <option>Kristen</option>
-                <option>Hindu</option>
-                <option>Budha</option>
-                <option>Atheis</option>
-            </select>
-        </p>
-        <p>
-            <label for="sekolah_asal">Sekolah Asal: </label>
-            <input type="text" name="sekolah_asal" placeholder="nama sekolah" />
-        </p>
-        <p>
-            <input type="submit" value="Daftar" name="daftar" />
-        </p>
-
-        </fieldset>
-
-    </form>
-
-    </body>
+  <!-- CDN Bootstrap JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js">
+</body>
 </html>
